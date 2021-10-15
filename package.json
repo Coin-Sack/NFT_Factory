@@ -5,8 +5,8 @@
   "main": "truffle-config.js",
   "scripts": {
     "compile": "truffle compile --all",
-    "migrate": "truffle migrate --network testnet --reset --compile-all && npm run verify",
-    "verify": "truffle run verify CS721Factory CS721Listings --network testnet"
+    "migrate": "truffle migrate --network testnet --reset --compile-all",
+    "verify": "truffle run verify CS721Factory --network testnet"
   },
   "author": "Stew",
   "license": "MIT",
