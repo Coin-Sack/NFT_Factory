@@ -1,11 +1,13 @@
 pragma solidity ^0.8.7;
 // SPDX-License-Identifier: MIT
 
+
 import "./CS721.sol";
 import "./interfaces/IPancakeRouter02.sol";
 import "./interfaces/IPancakePair.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
 
 contract CS721Factory is Ownable {
 
@@ -83,16 +85,10 @@ contract CS721Factory is Ownable {
 
     function _getMintFeeBNB() internal view returns (uint256) {
        (uint256 reserve0, uint256 reserve1, ) = CoinSackPancakePair.getReserves();
-       return (uint256(PancakeRouter.getAmountIn(_mintFeeCS, reserve1, reserve0))*115/100);
+       return (uint256(PancakeRouter.getAmountIn(_mintFeeCS*115/100, reserve1, reserve0)));
     }
 
-    receive() external payable {
-        payable(address(CoinSack)).transfer(msg.value);
-    }
-
-    fallback() external payable {
-        payable(address(CoinSack)).transfer(msg.value);
-    }
 
     event Mint(address tokenAddress, uint256 tokenId);
+
 }
